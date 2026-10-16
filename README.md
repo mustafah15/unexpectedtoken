@@ -71,16 +71,18 @@ The workflow in `.github/workflows/deploy.yml` builds and deploys on pushes to
 2. Commit and push the workflow and site changes to `main`.
 3. Follow the **Deploy blog to GitHub Pages** run in the Actions tab.
 
-The workflow reads the site origin and base path from GitHub Pages. By default,
-this repository publishes at `https://mustafah15.github.io/unexpectedtoken/`.
-For a custom domain, configure the domain in Pages settings and its DNS, then
-rerun the workflow. No workflow URL change is needed. Update `site` in
-`astro.config.mjs` to the custom domain as well for local production builds.
+The workflow builds using `astro.config.mjs`, which sets the canonical site to
+`https://unexpectedtoken.online` and the base path to `/`. GitHub Pages metadata
+does not override these values, avoiding inherited account-domain URLs.
+
+Configure `unexpectedtoken.online` in the repository's Pages settings and point
+its DNS records to GitHub Pages. For a future domain change, update `site` in
+`astro.config.mjs` and the Pages settings together.
 
 Private repositories require an eligible paid GitHub plan for Pages.
 
-To verify the default project URL locally:
+To verify the production build locally:
 
 ```sh
-npm run build -- --site https://mustafah15.github.io --base /unexpectedtoken
+npm run build
 ```
