@@ -1,0 +1,27 @@
+---
+import { withBase } from '../utils/urls';
+import { getCollection } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<ul class="post-list">
+ {posts.map((post) => (
+  <li>
+   <div class="post-date"><FormattedDate date={post.data.pubDate} /></div>
+   <div class="post-summary"><h2><a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a></h2><span aria-hidden="true"> — </span><p>{post.data.description}</p></div>
+  </li>
+ ))}
+</ul>
+<style>
+ .post-list { list-style: none; padding: 0; margin: 0; }
+ li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 24px; margin-bottom: 32px; }
+ .post-date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 15px; padding-top: 4px; text-align: right; white-space: nowrap; }
+ h2, p { display: inline; margin: 0; font-size: 18px; line-height: 1.7; font-weight: normal; }
+ h2 { font-weight: 600; letter-spacing: -0.015em; }
+ h2 a { text-decoration: none; }
+ h2 a:hover { text-decoration: underline; }
+ @media (max-width: 520px) {
+  li { grid-template-columns: 1fr; gap: 5px; margin-bottom: 28px; }
+  .post-date { text-align: left; padding-top: 0; }
+ }
+</style>

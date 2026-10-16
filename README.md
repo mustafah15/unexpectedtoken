@@ -61,3 +61,26 @@ Check out [our documentation](https://docs.astro.build) or jump into our [Discor
 ## Credit
 
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+
+## GitHub Pages deployment
+
+The workflow in `.github/workflows/deploy.yml` builds and deploys on pushes to
+`main`. It can also be run manually from the Actions tab.
+
+1. In the repository's **Settings → Pages**, select **GitHub Actions** as the source.
+2. Commit and push the workflow and site changes to `main`.
+3. Follow the **Deploy blog to GitHub Pages** run in the Actions tab.
+
+The workflow reads the site origin and base path from GitHub Pages. By default,
+this repository publishes at `https://mustafah15.github.io/unexpectedtoken/`.
+For a custom domain, configure the domain in Pages settings and its DNS, then
+rerun the workflow. No workflow URL change is needed. Update `site` in
+`astro.config.mjs` to the custom domain as well for local production builds.
+
+Private repositories require an eligible paid GitHub plan for Pages.
+
+To verify the default project URL locally:
+
+```sh
+npm run build -- --site https://mustafah15.github.io --base /unexpectedtoken
+```
