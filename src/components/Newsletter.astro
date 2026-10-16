@@ -1,0 +1,21 @@
+---
+import { withBase } from '../utils/urls';
+---
+<section class="newsletter" aria-labelledby="newsletter-heading">
+ <h2 id="newsletter-heading">Stay in the loop</h2>
+ <p class="intro">Occasional emails with new posts and things worth sharing. Unsubscribe anytime.</p>
+ <script is:inline async src="https://eocampaign1.com/form/a07829a8-c980-11f1-a726-cf864ba8df51.js" data-form="a07829a8-c980-11f1-a726-cf864ba8df51"></script>
+ <noscript><p>Enable JavaScript to subscribe by email, or follow the <a href={withBase('/rss.xml')}>RSS feed</a>.</p></noscript>
+</section>
+<style>
+ .newsletter { width: min(640px, calc(100% - 48px)); margin: 64px auto 0; padding-top: 28px; border-top: 1px solid var(--rule); }
+ h2 { margin: 0 0 10px; font-size: 24px; }
+ .intro { color: var(--muted); font-size: 16px; margin: 0 0 20px; }
+ /* Override only presentation; the provider owns validation and submission. */
+ .newsletter :global([data-form]) { --text-colour: var(--text) !important; --font-family: inherit !important; }
+ .newsletter :global(.inline-container), .newsletter :global(.form-container) { max-width: 100% !important; }
+ .newsletter :global(.emailoctopus-form) { --button-colour: #95bff0; --button-text-colour: #17243d; --label-colour: #e4e7ed; --field-border-colour: #95bff0; }
+ .newsletter :global(.emailoctopus-form input) { min-height: 46px; font-family: inherit; }
+ .newsletter :global(.emailoctopus-form input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+ .newsletter :global(.mastfoot.no-bg p) { background: #faf7ff; border: 1px solid #f5efff; }
+</style>
