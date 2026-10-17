@@ -32,7 +32,14 @@ const { title, description, image = FallbackImage } = Astro.props;
 />
 <meta name="generator" content={Astro.generator} />
 
-
+{import.meta.env.PROD && (
+	<script
+		is:inline
+		data-goatcounter="https://unexpectedtoken.goatcounter.com/count"
+		async
+		src="https://gc.zgo.at/count.js"
+	></script>
+)}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
